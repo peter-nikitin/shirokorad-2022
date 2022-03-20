@@ -104,4 +104,5 @@ public
 .tern-port
 
 
-/**/photos/*
+projects/**/**.jpg
+projects/**/**.jpeg
