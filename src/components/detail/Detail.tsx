@@ -5,9 +5,13 @@ import React from "react";
 import { IDetail } from "../../types";
 import DetailPhoto from "./DetailPhoto";
 import Helmet from "react-helmet";
+import styled from "styled-components";
 
 const Detail = ({ data }: IDetail.RootObject) => {
-  console.log(data);
+  const PhotosGridWrapper = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  `;
 
   return (
     <Layout>
@@ -16,14 +20,14 @@ const Detail = ({ data }: IDetail.RootObject) => {
           <script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/1.1.9/js/libs/jquery-1.10.2.min.js" />
         </Helmet>
         <MDXRenderer>{data.mdx.body}</MDXRenderer>
-        <div id=".freewal">
+        <PhotosGridWrapper>
           {data.allFile.nodes.map((photo) => (
             <DetailPhoto
               imageData={photo.childrenImageSharp[0].gatsbyImageData}
               alt=""
             />
           ))}
-        </div>
+        </PhotosGridWrapper>
       </>
     </Layout>
   );
