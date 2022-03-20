@@ -27,13 +27,15 @@ interface ChildImageSharp {
   gatsbyImageData: GatsbyImageData;
 }
 
-interface AllMdx {
-  nodes: Node[];
-}
-export namespace Grid {
+
+export namespace IGrid {
   interface Node {
     slug: string;
     frontmatter: Frontmatter;
+  }
+
+  interface AllMdx {
+    nodes: Node[];
   }
 
   interface Thumb {
@@ -54,7 +56,7 @@ export namespace Grid {
   }
 }
 
-namespace IProjectItem {
+namespace IDetail {
   interface Node {
     childrenImageSharp: ChildrenImageSharp[];
   }

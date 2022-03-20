@@ -2,20 +2,20 @@ import { graphql } from "gatsby";
 import * as React from "react";
 
 import Layout from "../components/Layout";
-import ProjectsGrid from "../components/ProjectsGrid";
-import { Grid } from "../types";
+import Grid from "../components/grid/Grid";
+import { IGrid } from "../types";
 
 
 
 // markup
-const IndexPage = ({ data }: Grid.RootObject) => {
+const IndexPage = ({ data }: IGrid.RootObject) => {
   console.log(data);
 
   const { nodes } = data.allMdx;
 
   return (
     <Layout>
-      <ProjectsGrid items={nodes} />
+      <Grid items={nodes} />
     </Layout>
   );
 };

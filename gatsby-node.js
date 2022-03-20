@@ -6,7 +6,7 @@ exports.onPostBuild = ({ reporter }) => {
 // Create blog pages dynamically
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
-  const blogPostTemplate = path.resolve(`${__dirname}/src/components/ProjectItem.tsx`);
+  const blogPostTemplate = path.resolve(`${__dirname}/src/components/Detail.tsx`);
   const result = await graphql(`
     query {
       allMdx {
@@ -30,7 +30,7 @@ exports.createPages = async ({ graphql, actions }) => {
       context: {
         title: node.title,
         slug: node.slug,
-        projectPhotos: `${node.slug}photos/*`
+        photos: `${node.slug}photos/*`,
       },
     });
   });
