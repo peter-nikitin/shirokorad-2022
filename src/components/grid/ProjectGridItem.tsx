@@ -1,18 +1,16 @@
 import { Link } from "gatsby";
 import React from "react";
 import styled from "styled-components";
-import { Grid } from "../../types";
+import { IGrid } from "../../types";
 
 import Thumb from "./Thumb";
 
 type Props = {
   slug: string;
-  frontmatter: Grid.Frontmatter;
+  frontmatter: IGrid.Frontmatter;
 };
 
-const GridItemWrapper = styled.div`
-  width: 30%;
-`;
+const GridItemWrapper = styled.div``;
 
 const ProjectGridItem = ({ frontmatter, slug }: Props) => {
   return (

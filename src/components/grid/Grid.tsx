@@ -11,8 +11,11 @@ type Props = {
 };
 
 const GridWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-flow: row;
+  gap: 40px 40px;
+  grid-auto-flow: dense;
 `;
 
 const Grid = ({ items }: Props) => {
