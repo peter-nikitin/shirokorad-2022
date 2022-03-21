@@ -10,11 +10,14 @@ import styled from "styled-components";
 const Detail = ({ data }: IDetail.RootObject) => {
   const PhotosGridWrapper = styled.div`
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-flow: row;
+    gap: 10px 10px;
+    grid-auto-flow: dense;
   `;
 
   return (
-    <Layout>
+    <Layout pageTitle={data.mdx.frontmatter.title}>
       <>
         <Helmet>
           <script src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/1.1.9/js/libs/jquery-1.10.2.min.js" />
