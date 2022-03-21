@@ -106,3 +106,5 @@ public
 
 projects/**/**.jpg
 projects/**/**.jpeg
+
+.DS_Store
