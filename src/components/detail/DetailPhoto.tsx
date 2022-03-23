@@ -6,6 +6,7 @@ import NoImage from "../NoImage";
 type Props = {
   imageData: Parameters<typeof getImage>[0];
   alt: string;
+  onClick: () => void;
 };
 
 const Photo = styled.div<{
@@ -15,12 +16,12 @@ const Photo = styled.div<{
   grid-column-end: ${(props) => (props.width > props.height ? "span 2" : "")};
 `;
 
-const DetailPhoto = ({ imageData, alt }: Props) => {
+const DetailPhoto = ({ imageData, alt, onClick }: Props) => {
   const image = getImage(imageData);
 
   return image ? (
     <Photo height={image.height} width={image.width}>
-      <GatsbyImage image={image} alt={alt} objectFit="fill" />
+      <GatsbyImage image={image} alt={alt} objectFit="fill" onClick={onClick} />
     </Photo>
   ) : (
     <NoImage />
