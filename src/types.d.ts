@@ -56,7 +56,7 @@ export namespace IGrid {
   }
 }
 
-namespace IDetail {
+export namespace IDetail {
   interface Node {
     childrenImageSharp: ChildrenImageSharp[];
   }
