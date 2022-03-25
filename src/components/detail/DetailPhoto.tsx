@@ -21,7 +21,7 @@ const DetailPhoto = ({ imageData, alt, onClick }: Props) => {
 
   return image ? (
     <Photo height={image.height} width={image.width}>
-      <GatsbyImage image={image} alt={alt} objectFit="fill" onClick={onClick} />
+      <GatsbyImage image={image} alt={alt} objectFit="fill"/>
     </Photo>
   ) : (
     <NoImage />
