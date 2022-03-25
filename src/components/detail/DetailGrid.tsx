@@ -7,6 +7,7 @@ import { IDetail } from "../../types";
 import DetailPhoto from "./DetailPhoto";
 import "react-image-lightbox/style.css"; // This only needs to be imported once in your app
 import Modal from "./Modal";
+import { deviceBreakpoint } from "../GlobalStyles";
 
 type PropsDetailGrid = {
   photos: IDetail.Node[];
@@ -19,6 +20,10 @@ const DetailGrid = ({ photos }: PropsDetailGrid) => {
     grid-auto-flow: row;
     gap: 10px 10px;
     grid-auto-flow: dense;
+
+    @media ${deviceBreakpoint.mobile} {
+      grid-template-columns: repeat(2, 1fr);
+    }
   `;
 
   const initialLightboxImagesArray = useMemo(() => {
@@ -35,9 +40,7 @@ const DetailGrid = ({ photos }: PropsDetailGrid) => {
             imageData={gatsbyImageData}
             alt=""
             onClick={() => {
-              console.log(index);
-              
-              setImageIndex(index)
+              setImageIndex(index);
             }}
           />
         );
@@ -45,7 +48,7 @@ const DetailGrid = ({ photos }: PropsDetailGrid) => {
     []
   );
 
-  const [imageIndex, setImageIndex] = useState();
+  const [imageIndex, setImageIndex] = useState<number>();
 
   return (
     <>
