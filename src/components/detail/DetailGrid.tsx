@@ -1,17 +1,18 @@
 import { getSrc } from "gatsby-plugin-image";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import Lightbox from "react-image-lightbox";
 import styled from "styled-components";
 import { IDetail } from "../../types";
 
 import DetailPhoto from "./DetailPhoto";
 import "react-image-lightbox/style.css"; // This only needs to be imported once in your app
+import Modal from "./Modal";
 
-type Props = {
+type PropsDetailGrid = {
   photos: IDetail.Node[];
 };
 
-const DetailGrid = ({ photos }: Props) => {
+const DetailGrid = ({ photos }: PropsDetailGrid) => {
   const GridWrapper = styled.div`
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -20,41 +21,40 @@ const DetailGrid = ({ photos }: Props) => {
     grid-auto-flow: dense;
   `;
 
-  const images: string[] = [];
+  const initialLightboxImagesArray = useMemo(() => {
+    return photos.map((photo) => getSrc(photo.childrenImageSharp[0]) || "");
+  }, [photos]);
 
-  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
-  const [lightboxIndex, setLightboxIndex] = useState(0);
+  const photoGrid = useMemo(
+    () =>
+      photos.map((photo, index) => {
+        const { gatsbyImageData } = photo.childrenImageSharp[0];
+
+        return (
+          <DetailPhoto
+            imageData={gatsbyImageData}
+            alt=""
+            onClick={() => {
+              console.log(index);
+              
+              setImageIndex(index)
+            }}
+          />
+        );
+      }),
+    []
+  );
+
+  const [imageIndex, setImageIndex] = useState();
 
   return (
     <>
-      <GridWrapper>
-        {photos.map((photo, index) => {
-          const { gatsbyImageData } = photo.childrenImageSharp[0];
-          const src = getSrc(gatsbyImageData);
-          if (src) images.push(src);
-          return (
-            <DetailPhoto
-              key={src}
-              imageData={gatsbyImageData}
-              alt=""
-              onClick={() => {
-                setLightboxIndex(index);
-                setIsLightboxOpen(true);
-              }}
-            />
-          );
-        })}
-      </GridWrapper>
-      {isLightboxOpen && (
-        <Lightbox
-          mainSrc={images[lightboxIndex]}
-          nextSrc={images[lightboxIndex + 1]}
-          prevSrc={images[lightboxIndex - 1]}
-          onCloseRequest={() => setIsLightboxOpen(false)}
-          onMovePrevRequest={() => setLightboxIndex(lightboxIndex - 1)}
-          onMoveNextRequest={() => setLightboxIndex(lightboxIndex + 1)}
-        />
-      )}
+      <GridWrapper>{photoGrid}</GridWrapper>
+
+      <Modal
+        allPhotos={initialLightboxImagesArray}
+        showImageOnIndex={imageIndex}
+      />
     </>
   );
 };
