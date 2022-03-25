@@ -5,8 +5,6 @@ import Layout from "../components/Layout";
 import Grid from "../components/grid/Grid";
 import { IGrid } from "../types";
 
-
-
 // markup
 const IndexPage = ({ data }: IGrid.RootObject) => {
   console.log(data);
