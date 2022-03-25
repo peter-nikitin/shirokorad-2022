@@ -1,7 +1,9 @@
 import * as React from "react";
-import { Link, useStaticQuery, graphql, PageProps } from "gatsby";
+import { useStaticQuery, graphql } from "gatsby";
 import Logo from "./Logo";
 import styled from "styled-components";
+import Navigation from "./Navigation";
+import { GlobalStyles } from "./GlobalStyles";
 
 type Props = {
   pageTitle?: string;
@@ -12,6 +14,7 @@ const Wrapper = styled.div`
   margin: 0 auto;
   padding: 20px 30px;
 `;
+
 
 const Layout = ({ pageTitle, children }: Props) => {
   const data = useStaticQuery(graphql`
@@ -26,6 +29,7 @@ const Layout = ({ pageTitle, children }: Props) => {
 
   return (
     <Wrapper>
+      <GlobalStyles />
       <title>
         {pageTitle} | {data.site.siteMetadata.title}
       </title>
