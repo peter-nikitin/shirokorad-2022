@@ -67,6 +67,13 @@ export namespace IDetail {
 
   interface Frontmatter {
     title: string;
+    scheme: Scheme;
+    photo: string;
+    stylist: string;
+  }
+
+  interface Scheme {
+    childImageSharp: ChildImageSharp;
   }
 
   interface Mdx {
