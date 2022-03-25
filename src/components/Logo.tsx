@@ -1,20 +1,23 @@
 import { Link } from "gatsby";
-import { StaticImage } from "gatsby-plugin-image";
+
 import React from "react";
 import styled from "styled-components";
+
+import logo from "../images/logo.svg";
 
 const LogoWrapper = styled.header`
   text-align: center;
 `;
 
+const LogoImage = styled.img`
+width: 270px;
+`
+
 const Logo = () => {
   return (
     <LogoWrapper>
       <Link to="/">
-        <StaticImage
-          src={`${__dirname}/../../images/logo.svg`}
-          alt="Наталья Широкорад - дизайнер"
-        />
+        <LogoImage src={logo} alt="Наталья Широкорад - дизайнер" />
       </Link>
     </LogoWrapper>
   );
