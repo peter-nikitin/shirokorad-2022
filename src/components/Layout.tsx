@@ -30,6 +30,7 @@ const Layout = ({ pageTitle, children }: Props) => {
         {pageTitle} | {data.site.siteMetadata.title}
       </title>
       <Logo />
+      <Navigation />
       <main>
         <h1>{pageTitle}</h1>
         {children}
