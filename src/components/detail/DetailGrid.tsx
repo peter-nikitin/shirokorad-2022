@@ -1,19 +1,34 @@
-import { getSrc } from "gatsby-plugin-image";
-import React, { useMemo, useState } from "react";
-import Lightbox from "react-image-lightbox";
+import React, { useEffect, useMemo } from "react";
+
 import styled from "styled-components";
 import { IDetail } from "../../types";
 
 import DetailPhoto from "./DetailPhoto";
-import "react-image-lightbox/style.css"; // This only needs to be imported once in your app
-import Modal from "./Modal";
+
 import { deviceBreakpoint } from "../GlobalStyles";
+//@ts-ignore-next-line
+import PhotoSwipeLightbox from "photoswipe/lightbox";
+import "photoswipe/style.css";
 
 type PropsDetailGrid = {
   photos: IDetail.Node[];
 };
 
 const DetailGrid = ({ photos }: PropsDetailGrid) => {
+  useEffect(() => {
+    let lightbox = new PhotoSwipeLightbox({
+      gallery: "#photo-grid",
+      children: "a",
+      pswpModule: () => import("photoswipe"),
+    });
+    lightbox.init();
+
+    return () => {
+      lightbox.destroy();
+      lightbox = null;
+    };
+  }, []);
+
   const GridWrapper = styled.div`
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -26,38 +41,24 @@ const DetailGrid = ({ photos }: PropsDetailGrid) => {
     }
   `;
 
-  const initialLightboxImagesArray = useMemo(() => {
-    return photos.map((photo) => getSrc(photo.childrenImageSharp[0]) || "");
-  }, [photos]);
-
   const photoGrid = useMemo(
     () =>
-      photos.map((photo, index) => {
+      photos.map((photo) => {
         const { gatsbyImageData } = photo.childrenImageSharp[0];
-
+        // TODO: добавить нормальное описание для картинки и key
         return (
           <DetailPhoto
             imageData={gatsbyImageData}
             alt=""
-            onClick={() => {
-              setImageIndex(index);
-            }}
           />
         );
       }),
     []
   );
 
-  const [imageIndex, setImageIndex] = useState<number>();
-
   return (
     <>
-      <GridWrapper>{photoGrid}</GridWrapper>
-
-      <Modal
-        allPhotos={initialLightboxImagesArray}
-        showImageOnIndex={imageIndex}
-      />
+      <GridWrapper id="photo-grid">{photoGrid}</GridWrapper>
     </>
   );
 };
