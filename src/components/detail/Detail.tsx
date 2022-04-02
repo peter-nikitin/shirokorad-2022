@@ -11,17 +11,29 @@ import "photoswipe/style.css";
 import DetailGrid from "./DetailGrid";
 import { DetailQuery } from "../../../gatsby-graphql";
 import ImageWithLightbox from "../Image/ImageWithLightbox";
+import { deviceBreakpoint } from "../GlobalStyles";
 
 const ProfectInfo = styled.article`
   display: flex;
-  max-width: 1000px;
+  flex-wrap: wrap;
+  max-width: 1400px;
   justify-content: center;
   margin: 30px auto 70px auto;
 `;
 
 const TextWrapper = styled.div`
   padding: 20px 20px 20px 50px;
-  width: 65ch;
+  width: 55ch;
+  @media ${deviceBreakpoint.mobile} {
+    padding: 10px;
+  }
+`;
+
+const Scheme = styled.div`
+  width: 450px;
+  @media ${deviceBreakpoint.mobile} {
+    width: 100%;
+  }
 `;
 
 const Detail: React.FC<PageProps<DetailQuery>> = ({ data }) => {
@@ -46,7 +58,7 @@ const Detail: React.FC<PageProps<DetailQuery>> = ({ data }) => {
     <Layout pageTitle={`${title} | Наталья Широкорад - дизайнер интерьеров`}>
       <>
         <ProfectInfo>
-          <div className="photo-with-lightbox">
+          <Scheme className="photo-with-lightbox">
             <ImageWithLightbox
               alt="Cхума проекта"
               imageData={gatsbyImageData}
@@ -54,7 +66,7 @@ const Detail: React.FC<PageProps<DetailQuery>> = ({ data }) => {
                 data?.mdx?.frontmatter?.scheme?.childImageSharp!.fixed!
               }
             />
-          </div>
+          </Scheme>
           <TextWrapper>
             <h1>{title}</h1>
             {data?.mdx?.body && <MDXRenderer>{data.mdx.body}</MDXRenderer>}
@@ -80,7 +92,7 @@ export const query = graphql`
       nodes {
         name
         childrenImageSharp {
-          gatsbyImageData
+          gatsbyImageData(width: 800)
           fixed(width: 2000, quality: 100) {
             src
             width
