@@ -1,26 +1,29 @@
 import { Link } from "gatsby";
 import React from "react";
 import styled from "styled-components";
-import { IGrid } from "../../types";
 
-import Thumb from "./Thumb";
+import Image from "../Image/Image";
+
+import { ProjectGridQuery } from "../../../gatsby-graphql";
 
 type Props = {
-  slug: string;
-  frontmatter: IGrid.Frontmatter;
+  frontmatter: ProjectGridQuery["allMdx"]["nodes"][0]["frontmatter"];
+  slug: ProjectGridQuery["allMdx"]["nodes"][0]["slug"];
 };
 
 const GridItemWrapper = styled.div``;
 
 const ProjectGridItem = ({ frontmatter, slug }: Props) => {
+  const path = slug || "";
+
+  const title = frontmatter?.title;
+  const gatsbyImageData = frontmatter?.thumb?.childImageSharp?.gatsbyImageData;
+
   return (
     <GridItemWrapper>
-      <Link to={slug}>
-        <p>{frontmatter.title}</p>
-        <Thumb
-          alt={frontmatter.title}
-          imageData={frontmatter.thumb.childImageSharp.gatsbyImageData}
-        />
+      <Link to={path}>
+        <Image alt={title} imageData={gatsbyImageData} />
+        <p>{title}</p>
       </Link>
     </GridItemWrapper>
   );

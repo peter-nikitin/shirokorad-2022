@@ -1,21 +1,22 @@
 import { Link } from "gatsby";
 import React from "react";
 import styled from "styled-components";
-import { IGrid } from "../../types";
+
 import { deviceBreakpoint } from "../GlobalStyles";
 
 import ProjectGridItem from "./ProjectGridItem";
-import Thumb from "./Thumb";
+
+import { ProjectGridQuery } from "../../../gatsby-graphql";
 
 type Props = {
-  items: IGrid.Node[];
+  items: ProjectGridQuery["allMdx"]["nodes"];
 };
 
 const GridWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-flow: row;
-  gap: 40px 40px;
+  gap: 70px 40px;
   grid-auto-flow: dense;
 
   @media ${deviceBreakpoint.mobile} {
@@ -26,9 +27,13 @@ const GridWrapper = styled.div`
 const Grid = ({ items }: Props) => {
   return (
     <GridWrapper>
-      {items.map((item) => (
-        <ProjectGridItem slug={item.slug} frontmatter={item.frontmatter} />
-      ))}
+      {items.map(
+        (item) =>
+          item.slug &&
+          item.frontmatter && (
+            <ProjectGridItem slug={item.slug} frontmatter={item.frontmatter} />
+          )
+      )}
     </GridWrapper>
   );
 };
