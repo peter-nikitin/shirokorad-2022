@@ -1,33 +1,29 @@
-import { graphql } from "gatsby";
+import { graphql, PageProps } from "gatsby";
 import * as React from "react";
 
 import Layout from "../components/Layout";
 import Grid from "../components/grid/Grid";
-import { IGrid } from "../types";
 
-// markup
-const IndexPage = ({ data }: IGrid.RootObject) => {
-  console.log(data);
+import { ProjectGridQuery } from "../../gatsby-graphql";
 
-  const { nodes } = data.allMdx;
-
+const IndexPage: React.FC<PageProps<ProjectGridQuery>> = ({ data }) => {
   return (
     <Layout>
-      <Grid items={nodes} />
+      <Grid items={data.allMdx.nodes} />
     </Layout>
   );
 };
 
 export const query = graphql`
-  {
-    allMdx {
+  query ProjectGrid {
+    allMdx(sort: { fields: [frontmatter___order], order: DESC }) {
       nodes {
         slug
         frontmatter {
           title
           thumb {
             childImageSharp {
-              gatsbyImageData
+              gatsbyImageData(width: 400)
             }
           }
         }
