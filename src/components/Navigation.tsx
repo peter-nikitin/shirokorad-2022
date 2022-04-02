@@ -22,21 +22,21 @@ const links = [
 ];
 
 const NavigationWrapper = styled.nav`
-display: flex;
-justify-content: center;
-margin-bottom: 40px;
-flex-wrap: wrap;
-`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+`;
 
 const LinkWrapper = styled.div`
-padding: 15px 40px;
-`
+  padding: 15px 40px;
+`;
 
 const Navigation = () => {
   return (
     <NavigationWrapper>
       {links.map((link) => (
-        <LinkWrapper>
+        <LinkWrapper key={link.path}>
           <Link to={link.path}>{link.name}</Link>
         </LinkWrapper>
       ))}
