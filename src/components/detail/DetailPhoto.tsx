@@ -1,37 +1,30 @@
-import { GatsbyImage, getImage, getSrc, StaticImage } from "gatsby-plugin-image";
+import { getImage } from "gatsby-plugin-image";
 import React from "react";
 import styled from "styled-components";
-import NoImage from "../NoImage";
+import ImageWithLightbox from "../Image/ImageWithLightbox";
 
 type Props = {
   imageData: Parameters<typeof getImage>[0];
   alt: string;
-  onClick?: () => void;
 };
 
-const Photo = styled.a<{
+const Photo = styled.div<{
   width: number;
   height: number;
 }>`
-  grid-column-end: ${(props: { width: number; height: number; }) => (props.width > props.height ? "span 2" : "")};
+  grid-column-end: ${(props: { width: number; height: number }) =>
+    props.width > props.height ? "span 2" : ""};
 `;
 
-const DetailPhoto = ({ imageData, alt, onClick }: Props) => {
+const DetailPhoto = ({ imageData, alt }: Props) => {
   const image = getImage(imageData);
-  const mainScr = getSrc(imageData);
 
   return image ? (
-    <Photo
-      height={image.height}
-      width={image.width}
-      data-pswp-src={mainScr}
-      data-pswp-width={image.width}
-      data-pswp-height={image.height}
-    >
-      <GatsbyImage image={image} alt={alt} objectFit="fill" />
+    <Photo height={image.height} width={image.width}>
+      <ImageWithLightbox alt={alt} imageData={imageData} />
     </Photo>
   ) : (
-    <NoImage />
+    <></>
   );
 };
 
