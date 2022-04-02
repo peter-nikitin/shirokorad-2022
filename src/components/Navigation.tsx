@@ -7,13 +7,13 @@ const links = [
     path: "/",
     name: "Главная",
   },
-  {
-    path: "/projects/",
-    name: "Проекты",
-  },
+  // {
+  //   path: "/projects/",
+  //   name: "Проекты",
+  // },
   {
     path: "/about/",
-    name: "О команде",
+    name: "Команда",
   },
   {
     path: "/contacts/",
