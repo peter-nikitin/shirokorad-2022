@@ -3,42 +3,32 @@ import { useStaticQuery, graphql } from "gatsby";
 import Logo from "./Logo";
 import styled from "styled-components";
 import Navigation from "./Navigation";
-import { GlobalStyles } from "./GlobalStyles";
+import { deviceBreakpoint, GlobalStyles } from "./GlobalStyles";
+import { Helmet } from "react-helmet";
+import PageHelmet from "./PageHelmet";
 
 type Props = {
   pageTitle?: string;
   children: React.ReactElement;
+  pageDescription?: string;
 };
 
 const Wrapper = styled.div`
   margin: 0 auto;
   padding: 20px 30px;
+  @media ${deviceBreakpoint.mobile} {
+    padding: 10px;
+  }
 `;
 
-
-const Layout = ({ pageTitle, children }: Props) => {
-  const data = useStaticQuery(graphql`
-    query {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `);
-
+const Layout = ({ pageTitle, children, pageDescription }: Props) => {
   return (
     <Wrapper>
+      <PageHelmet pageDescription={pageDescription} pageName={pageTitle} />
       <GlobalStyles />
-      <title>
-        {pageTitle} | {data.site.siteMetadata.title}
-      </title>
       <Logo />
       <Navigation />
-      <main>
-        <h1>{pageTitle}</h1>
-        {children}
-      </main>
+      <main>{children}</main>
     </Wrapper>
   );
 };
