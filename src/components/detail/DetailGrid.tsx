@@ -1,55 +1,39 @@
 import React, { useEffect, useMemo } from "react";
-
 import styled from "styled-components";
-import { IDetail } from "../../types";
 
 import DetailPhoto from "./DetailPhoto";
-
 import { deviceBreakpoint } from "../GlobalStyles";
-//@ts-ignore-next-line
-import PhotoSwipeLightbox from "photoswipe/lightbox";
-import "photoswipe/style.css";
+
+import { DetailQuery } from "../../../gatsby-graphql";
 
 type PropsDetailGrid = {
-  photos: IDetail.Node[];
+  photos: DetailQuery["allFile"]["nodes"];
+  projctName: string;
 };
 
-const DetailGrid = ({ photos }: PropsDetailGrid) => {
-  useEffect(() => {
-    let lightbox = new PhotoSwipeLightbox({
-      gallery: "#photo-grid",
-      children: "a",
-      pswpModule: () => import("photoswipe"),
-    });
-    lightbox.init();
+const GridWrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-flow: row;
+  gap: 10px 10px;
+  grid-auto-flow: dense;
 
-    return () => {
-      lightbox.destroy();
-      lightbox = null;
-    };
-  }, []);
+  @media ${deviceBreakpoint.mobile} {
+    grid-template-columns: repeat(2, 1fr);
+  }
+`;
 
-  const GridWrapper = styled.div`
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-auto-flow: row;
-    gap: 10px 10px;
-    grid-auto-flow: dense;
-
-    @media ${deviceBreakpoint.mobile} {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  `;
-
+const DetailGrid = ({ photos, projctName }: PropsDetailGrid) => {
   const photoGrid = useMemo(
     () =>
-      photos.map((photo) => {
-        const { gatsbyImageData } = photo.childrenImageSharp[0];
-        // TODO: добавить нормальное описание для картинки и key
+      photos.map((photo, index) => {
+        const { gatsbyImageData } = photo!.childrenImageSharp![0]!;
+
         return (
           <DetailPhoto
             imageData={gatsbyImageData}
-            alt=""
+            alt={`Фотография проекта ${projctName} - ${index}`}
+            key={photo.name}
           />
         );
       }),
@@ -58,7 +42,7 @@ const DetailGrid = ({ photos }: PropsDetailGrid) => {
 
   return (
     <>
-      <GridWrapper id="photo-grid">{photoGrid}</GridWrapper>
+      <GridWrapper className="photo-with-lightbox">{photoGrid}</GridWrapper>
     </>
   );
 };
