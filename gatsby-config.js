@@ -6,12 +6,6 @@ module.exports = {
   },
   plugins: [
     "gatsby-plugin-styled-components",
-    {
-      resolve: "gatsby-plugin-google-analytics",
-      options: {
-        trackingId: "123",
-      },
-    },
     "gatsby-plugin-image",
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-mdx",
@@ -19,14 +13,18 @@ module.exports = {
     {
       resolve: "gatsby-plugin-manifest",
       options: {
-        icon: `${__dirname}/src/images/hello.png`,
+        icon: `${__dirname}/src/images/icon-512.png`,
+        name: `Наталья Широкорад - дизайнер интерьеров`,
+        short_name: `Наталья Широкорад`,
+        start_url: `/`,
+        theme_color: `#4B473F`,
+        background_color: `#ffffff`,
       },
     },
     {
       resolve: `gatsby-plugin-sharp`,
       options: {
-        useMozJpeg: true,
-        defaultQuality: 100
+        defaultQuality: 100,
       },
     },
     {
