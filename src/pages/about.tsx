@@ -16,7 +16,7 @@ const Person = styled.div`
 const Portrait = styled.div`
   max-width: 250px;
   padding: 25px 10px;
-  @media ${deviceBreakpoint.desktop}  {
+  @media ${deviceBreakpoint.desktop} {
     padding-right: 40px;
   }
 `;
@@ -28,7 +28,7 @@ const Description = styled.div`
 const Name = styled.div`
   font-size: 1.3rem;
   font-weight: bold;
-`
+`;
 
 const Role = styled.div`
   font-size: 0.8rem;
@@ -36,11 +36,13 @@ const Role = styled.div`
 
 const PageHeader = styled.h1`
   text-align: center;
-`
+`;
 
 const contacts = () => {
   return (
-    <Layout>
+    <Layout
+      pageTitle={`Команда студии | Наталья Широкорад - дизайнер интерьеров`}
+    >
       <>
         <PageHeader>Команда</PageHeader>
         <Person>

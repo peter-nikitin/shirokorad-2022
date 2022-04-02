@@ -10,7 +10,9 @@ const ContactsWrapper = styled.div`
 
 const contacts = () => {
   return (
-    <Layout>
+    <Layout
+      pageTitle={`Контакты | Наталья Широкорад - дизайнер интерьеров`}
+    >
       <ContactsWrapper>
         <h1>Контакты</h1>
 

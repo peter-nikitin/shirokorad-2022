@@ -43,7 +43,7 @@ const Detail: React.FC<PageProps<DetailQuery>> = ({ data }) => {
   }, []);
 
   return (
-    <Layout>
+    <Layout pageTitle={`${title} | Наталья Широкорад - дизайнер интерьеров`}>
       <>
         <ProfectInfo>
           <div className="photo-with-lightbox">
