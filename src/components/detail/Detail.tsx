@@ -50,6 +50,9 @@ const Detail: React.FC<PageProps<DetailQuery>> = ({ data }) => {
             <ImageWithLightbox
               alt="Cхума проекта"
               imageData={gatsbyImageData}
+              fullScreen={
+                data?.mdx?.frontmatter?.scheme?.childImageSharp!.fixed!
+              }
             />
           </div>
           <TextWrapper>
@@ -77,7 +80,12 @@ export const query = graphql`
       nodes {
         name
         childrenImageSharp {
-          gatsbyImageData(width: 1500)
+          gatsbyImageData
+          fixed(width: 2000, quality: 100) {
+            src
+            width
+            height
+          }
         }
       }
     }
@@ -88,7 +96,12 @@ export const query = graphql`
         stylist
         scheme {
           childImageSharp {
-            gatsbyImageData(width: 1500)
+            gatsbyImageData(width: 800)
+            fixed(width: 2000) {
+              src
+              width
+              height
+            }
           }
         }
       }

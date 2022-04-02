@@ -3694,7 +3694,7 @@ export type DetailQueryVariables = Exact<{
 }>;
 
 
-export type DetailQuery = { allFile: { nodes: Array<{ name: string, childrenImageSharp?: Array<{ gatsbyImageData: any } | null> | null }> }, mdx?: { slug?: string | null, body: string, frontmatter?: { title: string, photo?: string | null, stylist?: string | null, scheme?: { childImageSharp?: { gatsbyImageData: any } | null } | null } | null } | null };
+export type DetailQuery = { allFile: { nodes: Array<{ name: string, childrenImageSharp?: Array<{ gatsbyImageData: any, fixed?: { src: string, width: number, height: number } | null } | null> | null }> }, mdx?: { slug?: string | null, body: string, frontmatter?: { title: string, photo?: string | null, stylist?: string | null, scheme?: { childImageSharp?: { gatsbyImageData: any, fixed?: { src: string, width: number, height: number } | null } | null } | null } | null } | null };
 
 export type ProjectGridQueryVariables = Exact<{ [key: string]: never; }>;
 

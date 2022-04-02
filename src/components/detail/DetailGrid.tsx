@@ -28,12 +28,13 @@ const DetailGrid = ({ photos, projctName }: PropsDetailGrid) => {
     () =>
       photos.map((photo, index) => {
         const { gatsbyImageData } = photo!.childrenImageSharp![0]!;
-
+        const fullScreen = photo!.childrenImageSharp![0]?.fixed!;
         return (
           <DetailPhoto
             imageData={gatsbyImageData}
             alt={`Фотография проекта ${projctName} - ${index}`}
             key={photo.name}
+            fullScreen={fullScreen}
           />
         );
       }),
