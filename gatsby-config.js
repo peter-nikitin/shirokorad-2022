@@ -22,7 +22,13 @@ module.exports = {
         icon: `${__dirname}/src/images/hello.png`,
       },
     },
-    "gatsby-plugin-sharp",
+    {
+      resolve: `gatsby-plugin-sharp`,
+      options: {
+        useMozJpeg: true,
+        defaultQuality: 100
+      },
+    },
     {
       resolve: `gatsby-plugin-graphql-codegen`,
       options: {
