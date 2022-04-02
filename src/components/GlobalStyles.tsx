@@ -30,6 +30,6 @@ export const deviceBreakpoint = {
   mobile: `(max-width: ${breakPontSize.mobile})`,
   tablet: `(max-width: ${breakPontSize.tablet})`,
   laptop: `(max-width: ${breakPontSize.laptop})`,
-  desktop: `(min-width: ${breakPontSize.desktop})`,
+  desktop: `(min-width: ${breakPontSize.laptop})`,
 };
 //Boder color: #4B473F
