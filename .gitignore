@@ -108,3 +108,5 @@ projects/**/**.jpg
 projects/**/**.jpeg
 
 .DS_Store
+
+gatsby-graphql.ts
