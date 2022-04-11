@@ -5,6 +5,7 @@ export const GlobalStyles = createGlobalStyle`
 
 * {
   font-family: 'Noto Serif', serif;
+  color: #4B473F;
 }
 
 a {
@@ -23,13 +24,14 @@ const breakPontSize = {
   mobile: "425px",
   tablet: "768px",
   laptop: "1024px",
-  desktop: "2560px",
+  laptop_large: "1440px",
 };
 
 export const deviceBreakpoint = {
   mobile: `(max-width: ${breakPontSize.mobile})`,
-  tablet: `(max-width: ${breakPontSize.tablet})`,
-  laptop: `(max-width: ${breakPontSize.laptop})`,
-  desktop: `(min-width: ${breakPontSize.laptop})`,
+  tablet: `(min-width: ${breakPontSize.mobile}) and (max-width: ${breakPontSize.tablet})`,
+  laptop: `(min-width: ${breakPontSize.tablet}) and (max-width: ${breakPontSize.laptop})`,
+  laptop_large: `(min-width: ${breakPontSize.laptop}) and (max-width: ${breakPontSize.laptop_large})`,
+  desktop: `(min-width: ${breakPontSize.laptop_large})`,
 };
 //Boder color: #4B473F

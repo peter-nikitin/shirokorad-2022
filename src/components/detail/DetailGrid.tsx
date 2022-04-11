@@ -18,9 +18,17 @@ const GridWrapper = styled.div`
   gap: 10px 10px;
   grid-auto-flow: dense;
 
-  @media ${deviceBreakpoint.mobile} {
+  @media ${deviceBreakpoint.tablet} {
     grid-template-columns: repeat(2, 1fr);
   }
+  @media ${deviceBreakpoint.laptop} {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  @media ${deviceBreakpoint.desktop} {
+    grid-template-columns: repeat(8, 1fr);
+  }
+
+  
 `;
 
 const DetailGrid = ({ photos, projctName }: PropsDetailGrid) => {

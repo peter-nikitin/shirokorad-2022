@@ -18,10 +18,20 @@ const GridWrapper = styled.div`
   grid-auto-flow: row;
   gap: 70px 40px;
   grid-auto-flow: dense;
-
+  justify-items: center;
+  
   @media ${deviceBreakpoint.mobile} {
     grid-template-columns: repeat(1, 1fr);
   }
+
+  @media ${deviceBreakpoint.tablet} {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media ${deviceBreakpoint.laptop} {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
 `;
 
 const Grid = ({ items }: Props) => {
