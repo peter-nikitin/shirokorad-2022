@@ -15,6 +15,7 @@ type Props = {
 
 const Wrapper = styled.div`
   margin: 0 auto;
+  max-width: 1820px;
   padding: 20px 30px;
   @media ${deviceBreakpoint.mobile} {
     padding: 10px;
