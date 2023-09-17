@@ -249,6 +249,10 @@ export type Site = Node & {
   siteMetadata?: Maybe<SiteSiteMetadata>;
   port?: Maybe<Scalars['Int']>;
   host?: Maybe<Scalars['String']>;
+  polyfill?: Maybe<Scalars['Boolean']>;
+  pathPrefix?: Maybe<Scalars['String']>;
+  jsxRuntime?: Maybe<Scalars['String']>;
+  trailingSlash?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   parent?: Maybe<Node>;
   children: Array<Node>;
@@ -354,6 +358,7 @@ export type MdxFrontmatter = {
   photo?: Maybe<Scalars['String']>;
   thumb?: Maybe<File>;
   scheme?: Maybe<File>;
+  size?: Maybe<Scalars['Float']>;
   order?: Maybe<Scalars['Int']>;
   print?: Maybe<Scalars['String']>;
 };
@@ -894,6 +899,10 @@ export type QuerySiteArgs = {
   siteMetadata?: InputMaybe<SiteSiteMetadataFilterInput>;
   port?: InputMaybe<IntQueryOperatorInput>;
   host?: InputMaybe<StringQueryOperatorInput>;
+  polyfill?: InputMaybe<BooleanQueryOperatorInput>;
+  pathPrefix?: InputMaybe<StringQueryOperatorInput>;
+  jsxRuntime?: InputMaybe<StringQueryOperatorInput>;
+  trailingSlash?: InputMaybe<StringQueryOperatorInput>;
   id?: InputMaybe<StringQueryOperatorInput>;
   parent?: InputMaybe<NodeFilterInput>;
   children?: InputMaybe<NodeFilterListInput>;
@@ -1164,6 +1173,7 @@ export type MdxFrontmatterFilterInput = {
   photo?: InputMaybe<StringQueryOperatorInput>;
   thumb?: InputMaybe<FileFilterInput>;
   scheme?: InputMaybe<FileFilterInput>;
+  size?: InputMaybe<FloatQueryOperatorInput>;
   order?: InputMaybe<IntQueryOperatorInput>;
   print?: InputMaybe<StringQueryOperatorInput>;
 };
@@ -1497,6 +1507,7 @@ export type FileFieldsEnum =
   | 'childrenMdx___frontmatter___scheme___childrenImageSharp'
   | 'childrenMdx___frontmatter___scheme___id'
   | 'childrenMdx___frontmatter___scheme___children'
+  | 'childrenMdx___frontmatter___size'
   | 'childrenMdx___frontmatter___order'
   | 'childrenMdx___frontmatter___print'
   | 'childrenMdx___slug'
@@ -1631,6 +1642,7 @@ export type FileFieldsEnum =
   | 'childMdx___frontmatter___scheme___childrenImageSharp'
   | 'childMdx___frontmatter___scheme___id'
   | 'childMdx___frontmatter___scheme___children'
+  | 'childMdx___frontmatter___size'
   | 'childMdx___frontmatter___order'
   | 'childMdx___frontmatter___print'
   | 'childMdx___slug'
@@ -2268,6 +2280,10 @@ export type SiteFieldsEnum =
   | 'siteMetadata___siteUrl'
   | 'port'
   | 'host'
+  | 'polyfill'
+  | 'pathPrefix'
+  | 'jsxRuntime'
+  | 'trailingSlash'
   | 'id'
   | 'parent___id'
   | 'parent___parent___id'
@@ -2401,6 +2417,10 @@ export type SiteFilterInput = {
   siteMetadata?: InputMaybe<SiteSiteMetadataFilterInput>;
   port?: InputMaybe<IntQueryOperatorInput>;
   host?: InputMaybe<StringQueryOperatorInput>;
+  polyfill?: InputMaybe<BooleanQueryOperatorInput>;
+  pathPrefix?: InputMaybe<StringQueryOperatorInput>;
+  jsxRuntime?: InputMaybe<StringQueryOperatorInput>;
+  trailingSlash?: InputMaybe<StringQueryOperatorInput>;
   id?: InputMaybe<StringQueryOperatorInput>;
   parent?: InputMaybe<NodeFilterInput>;
   children?: InputMaybe<NodeFilterListInput>;
@@ -3461,6 +3481,7 @@ export type MdxFieldsEnum =
   | 'frontmatter___scheme___internal___mediaType'
   | 'frontmatter___scheme___internal___owner'
   | 'frontmatter___scheme___internal___type'
+  | 'frontmatter___size'
   | 'frontmatter___order'
   | 'frontmatter___print'
   | 'slug'
@@ -4086,7 +4107,7 @@ export type DetailQuery = { allFile: { nodes: Array<{ name: string, childrenImag
 export type ProjectGridQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type ProjectGridQuery = { allMdx: { nodes: Array<{ slug?: string | null, frontmatter?: { title: string, thumb?: { childImageSharp?: { gatsbyImageData: any } | null } | null } | null }> } };
+export type ProjectGridQuery = { allMdx: { nodes: Array<{ slug?: string | null, frontmatter?: { title: string, size?: number | null, thumb?: { childImageSharp?: { gatsbyImageData: any } | null } | null } | null }> } };
 
 export type GatsbyImageSharpFixedFragment = { base64?: string | null, width: number, height: number, src: string, srcSet: string };
 

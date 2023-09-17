@@ -9,11 +9,15 @@ type Props = {
 
 const Image = ({ imageData, alt }: Props) => {
   const image = imageData && getImage(imageData);
-  
+
   const imageCaption =
     alt || "Изображение на сайте дизайнера Наталья Широкорад";
 
-  return image ? <GatsbyImage image={image} alt={imageCaption} /> : <NoImage />;
+  return image ? (
+    <GatsbyImage image={image} alt={imageCaption} loading="lazy" />
+  ) : (
+    <NoImage />
+  );
 };
 
 export default Image;

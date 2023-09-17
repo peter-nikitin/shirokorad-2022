@@ -50,6 +50,7 @@ const contacts = () => {
             <StaticImage
               alt="Наталья Широкорад - Основатель студии"
               src="../images/team_natasha.jpg"
+              height={350}
             />
           </Portrait>
           <Description>
@@ -70,6 +71,7 @@ const contacts = () => {
           <Portrait>
             <StaticImage
               alt="Ткаченко Ирина - Главный архитектор"
+              height={350}
               src="../images/team_ira.jpg"
             />
           </Portrait>
@@ -88,6 +90,7 @@ const contacts = () => {
           <Portrait>
             <StaticImage
               alt="Рябова Ольга - Декоратор"
+              height={350}
               src="../images/team_olia.jpg"
             />
           </Portrait>

@@ -72,6 +72,7 @@ const Detail: React.FC<PageProps<DetailQuery>> = ({ data }) => {
             {data?.mdx?.body && <MDXRenderer>{data.mdx.body}</MDXRenderer>}
             {stylist && <p>Стилист: {stylist}</p>}
             {photo && <p>Фотограф: {photo}</p>}
+            <p><i>Фото можно открыть на весь экран</i></p>
           </TextWrapper>
         </ProfectInfo>
 
@@ -88,12 +89,13 @@ export const query = graphql`
         relativePath: { glob: $photos }
         sourceInstanceName: { eq: "projects" }
       }
+      sort: { fields: name, order: ASC }
     ) {
       nodes {
         name
         childrenImageSharp {
-          gatsbyImageData(height: 500)
-          fixed(width: 2000, quality: 100) {
+          gatsbyImageData(height: 400)
+          fixed(width: 1100, quality: 80) {
             src
             width
             height
@@ -108,8 +110,8 @@ export const query = graphql`
         stylist
         scheme {
           childImageSharp {
-            gatsbyImageData(width: 800)
-            fixed(width: 2000) {
+            gatsbyImageData(width: 400)
+            fixed(width: 1100, quality: 80) {
               src
               width
               height

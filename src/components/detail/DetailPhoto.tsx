@@ -16,6 +16,8 @@ const Photo = styled.div<{
 }>`
   grid-column-end: ${(props: { width: number; height: number }) =>
     props.width > props.height ? "span 2" : ""};
+  content-visibility: auto;
+  contain-intrinsic-size: ${({ width, height }) => `${width} ${height}`};
 `;
 
 const DetailPhoto = ({ imageData, alt, fullScreen }: Props) => {

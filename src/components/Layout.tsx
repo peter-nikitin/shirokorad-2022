@@ -22,7 +22,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const Layout = ({ pageTitle, children, pageDescription }: Props) => {
+export const Layout = ({ pageTitle, children, pageDescription }: Props) => {
   return (
     <Wrapper>
       <PageHelmet pageDescription={pageDescription} pageName={pageTitle} />
