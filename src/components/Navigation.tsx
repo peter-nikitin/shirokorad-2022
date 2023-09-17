@@ -5,12 +5,12 @@ import styled from "styled-components";
 const links = [
   {
     path: "/",
-    name: "Главная",
+    name: "Проекты",
   },
-  // {
-  //   path: "/projects/",
-  //   name: "Проекты",
-  // },
+  {
+    path: "/services/",
+    name: "Услуги и цены",
+  },
   {
     path: "/about/",
     name: "Команда",

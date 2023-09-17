@@ -13,7 +13,7 @@ type PropsDetailGrid = {
 
 const GridWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   grid-auto-flow: row;
   gap: 10px 10px;
   grid-auto-flow: dense;
@@ -22,6 +22,9 @@ const GridWrapper = styled.div`
     grid-template-columns: repeat(2, 1fr);
   }
   @media ${deviceBreakpoint.laptop} {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  @media ${deviceBreakpoint.laptop_large} {
     grid-template-columns: repeat(4, 1fr);
   }
   @media ${deviceBreakpoint.desktop} {

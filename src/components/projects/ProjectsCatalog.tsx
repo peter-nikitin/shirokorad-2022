@@ -13,28 +13,13 @@ type Props = {
 };
 
 const GridWrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-flow: row;
-  gap: 70px 40px;
-  grid-auto-flow: dense;
-  justify-items: center;
-  
-  @media ${deviceBreakpoint.mobile} {
-    grid-template-columns: repeat(1, 1fr);
-  }
-
-  @media ${deviceBreakpoint.tablet} {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media ${deviceBreakpoint.laptop} {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
+display: flex;
+align-items: center;
+flex-direction: column;
+  gap: 40px;
 `;
 
-const Grid = ({ items }: Props) => {
+export const ProjectsCatalog = ({ items }: Props) => {
   return (
     <GridWrapper>
       {items.map(
@@ -47,5 +32,3 @@ const Grid = ({ items }: Props) => {
     </GridWrapper>
   );
 };
-
-export default Grid;

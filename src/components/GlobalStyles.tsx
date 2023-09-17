@@ -22,16 +22,13 @@ a:hover {
 
 const breakPontSize = {
   mobile: "425px",
-  tablet: "768px",
-  laptop: "1024px",
-  laptop_large: "1440px",
+  tablet: "767px",
+  laptop: "1025px",
 };
 
 export const deviceBreakpoint = {
   mobile: `(max-width: ${breakPontSize.mobile})`,
   tablet: `(min-width: ${breakPontSize.mobile}) and (max-width: ${breakPontSize.tablet})`,
-  laptop: `(min-width: ${breakPontSize.tablet}) and (max-width: ${breakPontSize.laptop})`,
-  laptop_large: `(min-width: ${breakPontSize.laptop}) and (max-width: ${breakPontSize.laptop_large})`,
-  desktop: `(min-width: ${breakPontSize.laptop_large})`,
+  desktop: `(min-width: ${breakPontSize.laptop})`,
 };
 //Boder color: #4B473F
