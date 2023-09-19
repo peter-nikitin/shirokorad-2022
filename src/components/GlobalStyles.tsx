@@ -27,8 +27,6 @@ const breakPontSize = {
 };
 
 export const deviceBreakpoint = {
-  mobile: `(max-width: ${breakPontSize.mobile})`,
-  tablet: `(min-width: ${breakPontSize.mobile}) and (max-width: ${breakPontSize.tablet})`,
-  desktop: `(min-width: ${breakPontSize.laptop})`,
+  mobile: `(max-width: ${breakPontSize.tablet})`,
+  tablet: `(min-width: ${breakPontSize.tablet})`,
 };
-//Boder color: #4B473F
