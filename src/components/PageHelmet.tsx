@@ -12,19 +12,9 @@ type Props = {
 };
 
 const PageHelmet = ({ pageDescription, pageName }: Props) => {
-  const data = useStaticQuery(graphql`
-    query {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `);
-
   return (
     <Helmet>
-      <title>{pageName || data.site.siteMetadata.title}</title>
+      <title>{pageName}</title>
       <link rel="icon" href={faviconIco} sizes="any" />
       <link rel="icon" href={faviconSvg} type="image/svg+xml" />
       <link rel="apple-touch-icon" href={appleTouch} />
